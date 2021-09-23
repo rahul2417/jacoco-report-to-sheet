@@ -6,7 +6,6 @@ async function run() {
   const path = core.getInput("JACOCO_CSV_PATH");
   const spreadsheetId = core.getInput("SPREADSHEET_ID");
   const sheetName = core.getInput("SPREADSHEET_NAME");
-  const sheetName = "Sheet2";
   const codeCoverageData = fs.readFileSync(path).toString().split('\n').map(e => e.trim()).map(e => e.split(',').map(e => e.trim())); 
   var refactoredCodeCoverageData = getRefactorCSVCodeCoverageData(codeCoverageData);
   const auth = new google.auth.GoogleAuth({
