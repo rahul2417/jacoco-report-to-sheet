@@ -3,12 +3,12 @@ const {google} = require('googleapis');
 const fs = require("fs");
 
 async function run() {
-//   const path = core.getInput("JACOCO_CSV_PATH");
-const path = "bbb.csv";
-//   const spreadsheetId = core.getInput("SPREADSHEET_ID");
-const spreadsheetId = "1l2QViepZyw1W3lPXV4rtxBaUx3nhsKdCtMsIjijfIJU";
-//   const sheetName = core.getInput("SPREADSHEET_NAME");
-const sheetName = "Sheet1";
+  const path = core.getInput("JACOCO_CSV_PATH");
+// const path = "bbb.csv";
+  const spreadsheetId = core.getInput("SPREADSHEET_ID");
+// const spreadsheetId = "1l2QViepZyw1W3lPXV4rtxBaUx3nhsKdCtMsIjijfIJU";
+  const sheetName = core.getInput("SPREADSHEET_NAME");
+// const sheetName = "Sheet1";
   const codeCoverageData = fs.readFileSync(path).toString().split('\n').map(e => e.trim()).map(e => e.split(',').map(e => e.trim())); 
   var refactoredCodeCoverageData = getRefactorCSVCodeCoverageData(codeCoverageData);
   // const auth = new google.auth.GoogleAuth({
