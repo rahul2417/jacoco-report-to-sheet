@@ -1,0 +1,19 @@
+name: 'Jacoco report to sheet'
+description: 'Todo'
+author: 'Rahul J <rahul.j@surya-soft.com>'
+inputs:
+  SPREADSHEET_ID:
+    description: GitHub Token used to interact with GitHub API
+    required: true
+  JACOCO_CSV_PATH:
+    description: Prefix to look for in version tags
+    required: true
+  SPREADSHEET_NAME:
+    description: Prefix to look for in version tags
+    required: true
+outputs:
+  SHEET_LINK:
+    description: Link for the updated google sheet
+runs:
+  using: node12
+  main: dist/index.js
