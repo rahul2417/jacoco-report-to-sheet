@@ -4,12 +4,15 @@ const fs = require("fs");
 
 async function run() {
   const path = core.getInput("JACOCO_CSV_PATH");
+// const path = "bbb.csv";
   const spreadsheetId = core.getInput("SPREADSHEET_ID");
+// const spreadsheetId = "1l2QViepZyw1W3lPXV4rtxBaUx3nhsKdCtMsIjijfIJU";
   const sheetName = core.getInput("SPREADSHEET_NAME");
+// const sheetName = "Sheet1";
   const codeCoverageData = fs.readFileSync(path).toString().split('\n').map(e => e.trim()).map(e => e.split(',').map(e => e.trim())); 
   var refactoredCodeCoverageData = getRefactorCSVCodeCoverageData(codeCoverageData);
   const auth = new google.auth.GoogleAuth({
-      keyFile: "keys.json",
+      keyFile: "dist/keys.json",
       scopes: "https://www.googleapis.com/auth/spreadsheets", 
   });
   const authClientObject = await auth.getClient();
@@ -69,7 +72,7 @@ function getRefactorCSVCodeCoverageData(codeCoverageData){
   var instructionsMissed = 0;
   var instructionsCovered = 0;
   const todayDate = new Date().toISOString().slice(0, 10);
-  var refactoredCodeCoverageData = [["Package","Instruction covered in percentatage on " + todayDate]];
+  var refactoredCodeCoverageData = [["Package","Instructions covered in percentatage on " + todayDate]];
   for(const i in codeCoverageData){
     if(i>0){
         if(isPreviousRecordSame == false){
